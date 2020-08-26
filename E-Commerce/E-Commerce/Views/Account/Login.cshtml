@@ -1,0 +1,59 @@
+﻿@model E_Commerce.Models.Login
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="span9">
+    <ul class="breadcrumb">
+        <li><a href="/Home/Index">Anasayfa</a><span class="divider"></span></li>
+        <li class="active">Giriş Yap</li>
+    </ul>
+</div>
+@ViewBag.Mesaj
+
+<link href="~/Content/login.css" rel="stylesheet" />
+
+<div class="container">
+    <div id="login-row" class="row justify-content-center align-items-center">
+        <div id="login-column" class="col-md-6">
+            <div class="box">
+                <div class="shape1"></div>
+                <div class="shape2"></div>
+                <div class="shape3"></div>
+                <div class="shape4"></div>
+                <div class="shape5"></div>
+                <div class="shape6"></div>
+                <div class="shape7"></div>
+
+                <div class="float">
+
+                    @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @class = "form" }))
+                    {
+                        <div class="form-group">
+                            <label for="username" class="text-white">Kullanıcı Adı :</label><br>
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control", @style = "max-width:35%" } })
+                                @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="username" class="text-white">Parola :</label><br>
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @style = "max-width:35%" } })
+                                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="submit" name="submit" class="btn btn-info btn-md" value="Giriş Yap">
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

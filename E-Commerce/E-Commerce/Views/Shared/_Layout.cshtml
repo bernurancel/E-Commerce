@@ -1,0 +1,125 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<title></title>
+
+<!-- Custom Theme files -->
+<link href="~/web/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<link href="~/web/css/style.css" rel="stylesheet" type="text/css" media="all" />
+<link href="~/web/css/fasthover.css" rel="stylesheet" type="text/css" media="all" />
+<link href="~/web/css/popuo-box.css" rel="stylesheet" type="text/css" media="all" />
+<!-- //Custom Theme files -->
+<!-- font-awesome icons -->
+<link href="~/web/css/font-awesome.css" rel="stylesheet"> 
+<!-- //font-awesome icons -->
+<!-- js -->
+<script src="~/web/js/jquery.min.js"></script>
+<link rel="stylesheet" href="~/web/js/jquery.countdown.js" /> <!-- countdown --> 
+<!-- //js -->  
+<!-- //end-smooth-scrolling --> 
+</head> 
+<body>
+    <!-- for bootstrap working -->
+    <script type="text/javascript" src="~/web/js/bootstrap-3.1.1.min.js"></script>
+    <!-- //for bootstrap working -->
+    <!-- header -->
+    <div class="header">
+        <div class="container">
+            <div class="w3l_logo">
+                <h1><a href="#"><span style="font-size:80%;color:red;">&star;ANGEL STORE &star; </span><span>Your stores.Your place.</span></a></h1>
+            </div>
+            <div class="search">
+                <input class="search_box" type="checkbox" id="search_box">
+                <label class="icon-search" for="search_box"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></label>
+                
+               
+                    @Html.Partial("Arama")
+         
+            </div>         
+        </div>
+    </div>
+    <!-- navigation -->
+    <div class="navigation">
+        <div class="container">
+            <nav class="navbar navbar-default">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header nav_2">
+                    <button type="button" class="navbar-toggle collapsed navbar-toggle1" data-toggle="collapse" data-target="#bs-megadropdown-tabs">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
+                    <ul class="nav navbar-nav">
+
+                        @if (User.IsInRole("user"))
+                        {
+                            <li><a href="/Home/Index" class="#">Home</a></li>
+                            <li><a href="/Home/About">About Us</a></li>
+                            <li><a href="/Home/Product">Product</a></li>
+                            <li><a href="/Home/FeedBack">FeedBack</a></li>
+                            <li><a href="/Cart/Index">@HttpContext.Current.User.Identity.Name</a></li>
+                            <li class="label-danger"><a href="/Account/Logout" style="color:white"><span class="icon-user"></span>Çıkış Yap </a></li>
+                        }
+                        @if (User.IsInRole("satıcı"))
+                        {
+                            @*<li><a href="/Home/Index" class="#">Home</a></li>*@
+                            @*<li><a href="/Home/About">About Us</a></li>*@
+                            <li><a href="/Home/Product">Product</a></li>
+                            <li><a href="/Home/FeedBack">FeedBack</a></li>
+                            <li><a href="/Supplier/Create">Satıcı Paneli</a></li>
+                            <li><a href="/Cart/Index">@HttpContext.Current.User.Identity.Name</a></li>
+                            <li class="label-danger"><a href="/Account/Logout" style="color:white"><span class="icon-user"></span>Çıkış Yap </a></li>
+                        }
+                        @if (User.IsInRole("admin"))
+                        {
+                            @*<li><a href="/Home/Index" class="#">Home</a></li>*@
+                            @*<li><a href="/Home/About">About Us</a></li>*@
+                            <li><a href="/Home/Product">Product</a></li>
+                            <li><a href="/Home/FeedBack">FeedBack</a></li>
+                            <li><a href="/Product/Index">Admin Paneli</a></li>
+                            <li><a href="/Cart/Index">@HttpContext.Current.User.Identity.Name</a></li>
+                            <li class="label-danger"><a href="/Account/Logout" style="color:white"><span class="icon-user"></span>Çıkış Yap </a></li>
+                        }
+                        @if (!User.IsInRole("admin") && !User.IsInRole("user") && !User.IsInRole("satıcı"))
+                        {
+
+                            <li><a href="/Home/Index" class="#">Home</a></li>
+                            <li><a href="/Home/About">About Us</a></li>
+                            <li><a href="/Home/Product">Product</a></li>
+                            <li><a href="/Home/FeedBack">FeedBack</a></li>
+                            <ul class="nav pull-right">
+                                <li class="label-warning"><a href="/Account/Register" style="color:white"><span class="icon-edit"></span>Kayıt Ol</a></li>
+                                <li class="label-success"><a href="/Account/Login" style="color:white"><span class="icon-user"></span>Giriş Yap</a></li>
+
+                            </ul>
+                        }
+                        @Html.Action("Summary", "Cart")
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <div class="container">
+        @RenderBody()
+    </div>
+    <!-- //footer -->
+    <div class="footer">
+        <div class="container">
+            <div class="w3_footer_grids">
+                <div class="col-md-3 w3_footer_grid">
+                    <h3>Contact</h3>
+                    <ul class="address">
+                        <li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a href="mailto:angelshopinfo@example.com">info@example.com</a></li>
+                        <li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>0 (312) 444 06 01 </li>
+                    </ul>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+    </div>
+    <!-- //footer -->
+</body>
+</html>

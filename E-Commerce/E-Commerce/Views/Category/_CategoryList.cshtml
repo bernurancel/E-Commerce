@@ -1,0 +1,22 @@
+﻿@using E_Commerce.Models
+@model IEnumerable<CategoryModel>
+
+@foreach (var item in Model)
+{
+    <div class="row">
+        <div id=" sidebar" class="span3">
+            <div class="well well-small">
+                <ul class="nav nav-list">
+                    <li class="active"><a href="/Home/ProductList/@item.Id">★@item.Name★ [@item.Count]</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+}
+<ul id="myTab" class="nav nav-tabs" role="tablist">
+    @foreach (var item in Model)
+    {
+        <li role="presentation"><a href="#kitchen" role="tab" id="kitchen-tab" data-toggle="tab" aria-controls="kitchen">@item.Name [@item.Count]</a></li>
+    }
+
+</ul>

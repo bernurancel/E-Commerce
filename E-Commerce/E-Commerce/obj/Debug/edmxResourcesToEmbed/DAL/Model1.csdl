@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="OrnekSiteModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="role1">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RoleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="user1" Relationship="Self.FK_user1_role1" FromRole="role1" ToRole="user1" />
+  </EntityType>
+  <EntityType Name="user1">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="RoleId" Type="Int32" />
+    <NavigationProperty Name="role1" Relationship="Self.FK_user1_role1" FromRole="user1" ToRole="role1" />
+  </EntityType>
+  <Association Name="FK_user1_role1">
+    <End Role="role1" Type="Self.role1" Multiplicity="0..1" />
+    <End Role="user1" Type="Self.user1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="role1">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="user1">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="OrnekSite" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="role1" EntityType="Self.role1" />
+    <EntitySet Name="user1" EntityType="Self.user1" />
+    <AssociationSet Name="FK_user1_role1" Association="Self.FK_user1_role1">
+      <End Role="role1" EntitySet="role1" />
+      <End Role="user1" EntitySet="user1" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

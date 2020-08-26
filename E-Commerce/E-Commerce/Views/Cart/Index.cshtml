@@ -1,0 +1,78 @@
+﻿
+@model E_Commerce.Models.Cart
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="span12">
+        <ul class="breadcrumb">
+            <li><a href="/Home/Index">Anasayfa</a> <span class="divider">/</span></li>
+            <li class="active">Sepet</li>
+        </ul>
+        <div class="well well-small">
+            @if (Model.Cartlines.Count>0)
+            {
+
+            
+
+            <table class="table table-bordered table-condensed">
+                <thead>
+                    <tr>
+                        <th>Resim</th>
+                        <th>Adı</th>
+                        <th>Açıklama </th>
+                        <th>Ader</th>
+                        <th>Fiyat</th>
+                        <th>Toplam Fİyat </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Cartlines)
+                    {
+                        <tr>
+                            <td><img width="100" src="~/Content/images/@item.Product.Image" alt=""></td>
+                            <td>@item.Product.Name</td>
+                            <td> @item.Product.Description </td>
+                            <td>@item.Quantity </td>
+                            <td>@item.Product.Price ₺</td>
+                            <td>
+                               @((item.Product.Price*item.Quantity).ToString("c"))
+                            </td>
+                            <td>
+                                @using (Html.BeginForm("RemoveFromCart", "Cart"))
+                                {
+                                    @Html.Hidden("Id",item.Product.Id)
+                                    <button type="submit" class="btn btn-danger">SİL</button>
+                                }
+                            </td>      
+                        </tr>
+                    }
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th class="label label-warning" style="display:block; color:white;" >Toplam Tutar : @Model.Total().ToString("c")</th>
+                    <th></th>
+                </tr>
+                </tbody>
+            </table><br>}
+            else
+            {
+                <div class="alert alert-warning">
+                    <p>
+                        Sepetinizde Ürün Bulunmamaktadır...
+                    </p>
+                </div>
+            }
+
+            <a href="/Home/Product" class="shopBtn btn-large"><span class="icon-arrow-left"></span> Alışverişe Devam Et  </a>
+            <a href="/Cart/Checkout" class="shopBtn btn-large pull-right">Sipariş Ver <span class="icon-arrow-right"></span></a>
+
+        </div>
+    </div>
+</div>

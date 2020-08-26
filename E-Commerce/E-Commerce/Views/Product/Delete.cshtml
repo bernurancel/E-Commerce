@@ -1,0 +1,63 @@
+﻿@model E_Commerce.Entity.Product
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<section class="content">
+    <h3>&emsp; &emsp;<font face="tahoma" size="5" color="red"> @Model.Name </font>ürününü silmek istediğinize emin misiniz?</h3>
+    <div>
+        <hr />
+        <dl class="dl-horizontal">
+
+            <dd>
+                <img src="~/Content/images/@Model.Image" width="100" height="100" />
+            </dd>
+
+            <dt>
+                Adı =
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+
+            <dt>
+                Açıklama =
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+
+            <dt>
+                Fiyat =
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Price)
+            </dd>
+
+            <dt>
+                Stok =
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Stock)
+            </dd>
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <div class="container">
+                <div class="form-actions no-color">
+                    <input type="submit" value="Sil" class="btn btn-danger" /> |
+                    @Html.ActionLink("Ürünlere Dön", "Index", null, new { @class = "btn btn-warning" })
+                </div>
+            </div>
+        }
+    </div>
+</section>

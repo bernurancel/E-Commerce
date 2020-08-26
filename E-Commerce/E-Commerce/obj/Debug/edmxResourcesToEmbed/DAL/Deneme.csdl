@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="OrnekSiteModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Roles2">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="RoleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Roles21" Relationship="Self.FK_Roles2_Roles2" FromRole="Roles2" ToRole="Roles21" />
+    <NavigationProperty Name="Roles22" Relationship="Self.FK_Roles2_Roles2" FromRole="Roles21" ToRole="Roles2" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_Users_Users" FromRole="Roles2" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="RoleId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Roles2" Relationship="Self.FK_Users_Users" FromRole="Users" ToRole="Roles2" />
+  </EntityType>
+  <Association Name="FK_Roles2_Roles2">
+    <End Role="Roles2" Type="Self.Roles2" Multiplicity="1" />
+    <End Role="Roles21" Type="Self.Roles2" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Roles2">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Roles21">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_Users">
+    <End Role="Roles2" Type="Self.Roles2" Multiplicity="1" />
+    <End Role="Users" Type="Self.Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Roles2">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="OrnekEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Roles2" EntityType="Self.Roles2" />
+    <EntitySet Name="Users" EntityType="Self.Users" />
+    <AssociationSet Name="FK_Roles2_Roles2" Association="Self.FK_Roles2_Roles2">
+      <End Role="Roles2" EntitySet="Roles2" />
+      <End Role="Roles21" EntitySet="Roles2" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_Users" Association="Self.FK_Users_Users">
+      <End Role="Roles2" EntitySet="Roles2" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

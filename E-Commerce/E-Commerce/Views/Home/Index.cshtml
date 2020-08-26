@@ -1,0 +1,83 @@
+﻿<div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
+    <ul id="myTab" class="nav nav-tabs" role="tablist">
+        <br />
+        <br />
+        <li class="active"><a href="/Home/Product">Kategoriler</a></li>
+        <br /> <br /> <br />
+        @Html.Action("_CategoryList", "Category")
+    </ul>
+   
+</div>
+
+<div class="top-brands">
+    <div class="container">
+        <h3>Top Brands</h3>
+        <div class="sliderfig">
+            <div class="nbs-flexisel-container">
+                <div class="nbs-flexisel-inner">
+                    <ul id="flexiselDemo1" class="nbs-flexisel-ul" style="left: -229.32px; display: block;">
+                        <li class="nbs-flexisel-item" style="width: 180px;">
+                            <img src="/web/images/tb4.jpg" alt=" " class="img-responsive">
+                        </li>
+                        <li class="nbs-flexisel-item" style="width: 180px;">
+                            <img src="/web/images/tb5.jpg" alt=" " class="img-responsive">
+                        </li>
+                        <li class="nbs-flexisel-item" style="width: 180px;">
+                            <img src="/web/images/tb1.jpg" alt=" " class="img-responsive">
+                        </li>
+                        <li class="nbs-flexisel-item" style="width: 180px;">
+                            <img src="/web/images/tb2.jpg" alt=" " class="img-responsive">
+                        </li>
+                        <li class="nbs-flexisel-item" style="width: 180px;">
+                            <img src="/web/images/tb3.jpg" alt=" " class="img-responsive">
+                        </li>
+                        <li class="nbs-flexisel-item" style="width: 180px;">
+                            <img src="/web/images/tb4.jpg" alt=" " class="img-responsive">
+                        </li>
+                        <li class="nbs-flexisel-item" style="width: 180px;">
+                            <img src="/web/images/tb5.jpg" alt=" " class="img-responsive">
+                        </li>
+                        <li class="nbs-flexisel-item" style="width: 180px;">
+                            <img src="/web/images/tb1.jpg" alt=" " class="img-responsive">
+                        </li>
+                        <li class="nbs-flexisel-item" style="width: 180px;">
+                            <img src="/web/images/tb2.jpg" alt=" " class="img-responsive">
+                        </li>
+                        <li class="nbs-flexisel-item" style="width: 180px;">
+                            <img src="/web/images/tb3.jpg" alt=" " class="img-responsive">
+                        </li>
+                    </ul><div class="nbs-flexisel-nav-left" style="top: 22.5px;"></div><div class="nbs-flexisel-nav-right" style="top: 22.5px;"></div>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+            $(window).load(function () {
+                $("#flexiselDemo1").flexisel({
+                    visibleItems: 4,
+                    animationSpeed: 1000,
+                    autoPlay: true,
+                    autoPlaySpeed: 3000,
+                    pauseOnHover: true,
+                    enableResponsiveBreakpoints: true,
+                    responsiveBreakpoints: {
+                        portrait: {
+                            changePoint: 480,
+                            visibleItems: 1
+                        },
+                        landscape: {
+                            changePoint: 640,
+                            visibleItems: 2
+                        },
+                        tablet: {
+                            changePoint: 768,
+                            visibleItems: 3
+                        }
+                    }
+                });
+
+            });
+        </script>
+        <script type="text/javascript" src="/web/js/jquery.flexisel.js"></script>
+    </div>
+</div>
+

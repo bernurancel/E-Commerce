@@ -1,0 +1,50 @@
+﻿@using E_Commerce.Entity
+@model Product
+<div class="span9">
+    <ul class="breadcrumb">
+        <li><a href="/Home/Index">Anasayfa</a><span class="divider"></span></li>
+        <li><a href="/Home/Product">Ürünler</a><span class="divider"></span></li>
+        <li class="active">Ürün Detay</li>
+    </ul>
+</div>
+<section>
+    <div class="modal-body">
+        <div class="col-md-5 modal_body_left">
+            <img src="~/Content/images/@Model.Image" alt=" " class="img-responsive">
+        </div>
+        <div class="col-md-7 modal_body_right">
+            <hr />
+            <h4>@Model.Name</h4>
+            <p>
+                @Model.Description
+            </p>
+            @using (Html.BeginForm("AddToCart","Cart",new { @class = "form" }))
+            {
+                @Html.HiddenFor(i=>i.Id)
+            <div class="modal_body_right_cart simpleCart_shelfItem">
+                <p><i class="item_price">@Model.Price ₺</i></p>
+                <form action="#" method="post">
+                    <button type="submit" class="w3ls-cart">Sepete EKLE</button>
+                </form>
+                <br />
+            </div>
+            
+            <div class="color-quality">
+                <ul>
+                    <h3>@Model.Stock ADET</h3>
+                    <li><a href="#" class="purple"><span></span></a></li>
+                    <li><a href="#" class="gray"><span></span></a></li>
+                    <li><a href="#" class="blue"><span></span></a></li>
+                    <li><a href="#" class="green"><span></span></a></li>
+                </ul>
+            </div>
+            <hr />
+            <form action="/Home/Product" method="post">
+                <button type="submit" class="w3ls-cart"> ← Ürünlere Geri Dön</button>
+            </form>
+            }
+        </div>
+        <div class="clearfix"> </div>
+        
+    </div>
+</section>

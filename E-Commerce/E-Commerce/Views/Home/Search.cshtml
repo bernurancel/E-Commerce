@@ -1,0 +1,37 @@
+﻿@using E_Commerce.Entity
+@model IEnumerable<Product>
+
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="span9">
+    <ul class="breadcrumb">
+        <li><a href="/Home/Index">Anasayfa</a><span class="divider"></span></li>
+        <li class="active">Ürünler</li>
+    </ul>
+</div>
+<body>
+    @foreach (var item in Model)
+    {
+        <div class="w3ls_mobiles_grid_right_grid3">
+            <div class="col-md-4 agileinfo_new_products_grid agileinfo_new_products_grid_mobiles">
+                <div class="agile_ecommerce_tab_left mobiles_grid">
+                    <div class="hs-wrapper hs-wrapper2">
+                        <br />
+                        <a href="/Home/ProductDetails/@item.Id"><img src="~/Content/images/@item.Image" style="max-width:210px;max-height:220px;min-width:210px;min-height:220px;" alt=" " class="img-responsive" /></a>
+                    </div>
+                    <h5><a href="single.html">@item.Name</a></h5>
+                    <div class="simpleCart_shelfItem">
+                        <p><span>@(item.Price+230) ₺</span> <i class="item_price">@item.Price ₺</i></p>
+                        <form action="#" method="post">
+                            <button type="submit" class="w3ls-cart">Sepete EKLE</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    }
+</body>
+
